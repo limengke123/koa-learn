@@ -3,18 +3,64 @@
  */
 const koa = require('koa');
 const Router = require('koa-router');
-const app = new koa();
+const bodyparser = require('koa-bodyparser');
 
-let home = new Router();
+const app = new koa();
+const home = new Router();
+
+//ctx.body解析中间件
+app.use(bodyparser());
 
 
 home.get('/', async (ctx) => {
     let html = `<ul>
                     <li><a href="/page/helloworld">/page/helloworld"></a></li>
                     <li><a href="/page/404">/page/helloworld"></a></li>
+                    <li><a href="/page/login">/page/login"></a></li>
                </ul>`;
     ctx.body = html;
 });
+
+//子路由
+let page = new Router();
+page.get('/404', async (ctx) => {
+    ctx.body = '404 page';
+}).get('/helloWorld', async ctx => {
+    ctx.body = 'helloWorld page!'
+}).get('login',async ctx=>{
+    let html = `
+      <h1>koa2 request post demo</h1>
+      <form method="POST" action="/">
+        <p>userName</p>
+        <input name="userName" /><br/>
+        <p>nickName</p>
+        <input name="nickName" /><br/>
+        <p>email</p>
+        <input name="email" /><br/>
+        <button type="submit">submit</button>
+      </form>
+    `;
+    if(ctx.method){
+        switch (ctx.method){
+            case 'GET':
+                ctx.body = html;
+                break;
+            case 'POST':
+                ctx.body='post';
+                break;
+            default:
+                ctx.body='default';
+                break;
+        }
+    }
+});
+//合并子路由
+let router = new Router();
+router.use('/', home.routes(), home.allowedMethods());
+router.use('/page', page.routes(), page.allowedMethods());
+
+app.use(router.routes()).use(router.allowedMethods());
+
 
 app.listen(3000);
 
