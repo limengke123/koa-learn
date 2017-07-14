@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/limengke123/koa-learn/issues"
   },
-  "homepage": "https://github.com/limengke123/koa-learn#readme"
+  "homepage": "https://github.com/limengke123/koa-learn#readme",
+  "devDependencies": {
+    "koa": "^2.3.0"
+  }
 }
