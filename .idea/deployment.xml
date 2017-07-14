@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="git@github.com:limengke123/koa-learn.git" uploadOnCheckin="402d8f0c-5fc6-4aaf-86fe-5b2f8262f077">
+    <serverData>
+      <paths name="git@github.com:limengke123/koa-learn.git">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="git@github.com:limengke123/koa-learn.git" />
+  </component>
+</project>
