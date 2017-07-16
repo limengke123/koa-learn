@@ -4,13 +4,17 @@
 const koa = require('koa');
 const Router = require('koa-router');
 const bodyparser = require('koa-bodyparser');
+const koastatic = require('koa-static');
+const path = require('path');
 
 const app = new koa();
 const home = new Router();
 
+const staticPath = './public';
+
 //ctx.body解析中间件
 app.use(bodyparser());
-
+app.use(koastatic(path.join(path.resolve(__dirname,'..'),staticPath)));
 
 home.get('/', async (ctx) => {
     let html = `<ul>
@@ -39,7 +43,7 @@ page.get('/404', async (ctx) => {
         <input name="email" /><br/>
         <button type="submit">submit</button>
       </form>
-    `;
+                `;
     if(ctx.method){
         switch (ctx.method){
             case 'GET':
