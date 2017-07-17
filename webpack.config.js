@@ -18,10 +18,7 @@ module.exports = {
             {
                 test:'/\.js$/',
                 exclude:__dirname+'/node_modules',
-                loader:'babel',
-                query:{
-                    presets:['env']
-                }
+                loader:'babel-loader'
             },
             {
                 test:'/\.less$/',
