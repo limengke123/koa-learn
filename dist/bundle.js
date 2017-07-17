@@ -71,3 +71,4 @@ throw new Error("Module parse failed: E:\\munch\\koa-learn\\app\\index.js Unexpe
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map

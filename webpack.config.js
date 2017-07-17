@@ -5,6 +5,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = {
     entry: './app/index.js',
@@ -16,12 +17,21 @@ module.exports = {
         loaders:[
             {
                 test:'/\.js$/',
-                exclude:'./node_modules',
-                loader:'babel-loader',
+                exclude:__dirname+'/node_modules',
+                loader:'babel',
                 query:{
-                    presets:['react','es2015']
+                    presets:['env']
                 }
+            },
+            {
+                test:'/\.less$/',
+                exclude:__dirname+'./node_modules',
+                use:['style-loader','css-loader','less-loader']
             }
         ]
-    }
+    },
+    devtool:'source-map',
+    plugins:[
+        new OpenBrowserPlugin({url:'http://localhost:3000'})
+    ]
 };
